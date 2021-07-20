@@ -16,6 +16,8 @@ public class Main {
         ar_numbers.insert(19);
 
         ar_numbers.removeAt(1);
+        System.out.println(ar_numbers.indexOf(17));
+        System.out.println(ar_numbers.indexOf(177));
 
         ar_numbers.printElements();
 

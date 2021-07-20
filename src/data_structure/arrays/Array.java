@@ -8,6 +8,17 @@ public class Array {
         items = new int[lenght];
     }
 
+
+    public int indexOf(int item) {
+        //if find it, return
+        //or return -1
+        for (int i = 0; i < count; i++) {
+            if (items[i] == item)
+                return i;
+        }
+        return -1;
+    }
+
     public void insert(int item) {
         //if array is full, resize it !
         if (items.length == count) {
