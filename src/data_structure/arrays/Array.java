@@ -2,18 +2,51 @@ package data_structure.arrays;
 
 public class Array {
     private int[] items;
+    private int count;
 
     public Array(int lenght) {
         items = new int[lenght];
     }
 
-    public void printElements(){
-        for(int i = 0; i < items.length; i++){
-            System.out.println(items[i]);
+    public void insert(int item) {
+        //if array is full, resize it !
+        if (items.length == count) {
 
-           // System.out.println(items.length);
+
+            int[] newItems = new int[count * 2];
+
+            //Copy all existing elements
+            for (int i = 0; i < count; i++)
+                newItems[i] = items[i];
+
+            //set items to new array
+            items = newItems;
         }
 
+        //add new item at the end
+        items[count++] = item;
+    }
+
+    public void removeAt(int index) {
+        //Validate the index
+        if (index < 0 || index >= count) throw new IllegalArgumentException();
+
+        //Shift the items to the left to fill the hole
+        // [10, 20, 30, 40] => [10, 30, 40]
+        //index : 1
+        // 1 <- 2
+        // 2 <- 3
+        for (int i = index; i < count; i++)
+            items[i] = items[i + 1];
+
+        count--;
+
+    }
+
+    public void printElements() {
+        for (int i = 0; i < count; i++) {
+            System.out.println(items[i]);
+        }
     }
 
 }

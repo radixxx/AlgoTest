@@ -6,13 +6,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int[] numbers = {2, 6, 9, 10, 13};
-        System.out.println(Arrays.toString(numbers));
-
-
         Array ar_numbers = new Array(3);
         ar_numbers.printElements();
 
+        ar_numbers.insert(15);
+        ar_numbers.insert(16);
+        ar_numbers.insert(11);
+        ar_numbers.insert(17);
+        ar_numbers.insert(19);
+
+        ar_numbers.removeAt(1);
+
+        ar_numbers.printElements();
 
     }
 
