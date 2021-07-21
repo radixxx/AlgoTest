@@ -1,5 +1,7 @@
 package data_structure.arrays.linkedList;
 
+import java.util.NoSuchElementException;
+
 public class LinkedListImpl {
 
     private class Node {
@@ -40,6 +42,65 @@ public class LinkedListImpl {
         }
   }
 
+  public int indexOf(int item){
+    int index = 0;
+    var current = first;
+
+    while (current != null){
+        if(current.value == item) return index;
+        current = current.next;
+        index++;
+    }
+
+    return -1;
+  }
+
+    public boolean contains(int item){
+      return indexOf(item) != -1;
+    }
+
+    public void deleteFirst(){
+      //[10 -> 20 -> 30]
+      //first => 10
+
+      if(isEmpty()) throw new NoSuchElementException();
+
+      if(first == last){
+          first = last = null;
+          return;
+      }
+
+      var second = first.next;
+      first.next = null;
+      first = second;
+
+    }
+
+    public void deleteLast(){
+        //[10 -> 20 -> 30]
+        //last => 30
+      if(isEmpty()) throw new NoSuchElementException();
+
+      if(first == last){
+          first = last = null;
+          return;
+      }
+
+      var previous = getPrevious(last);
+      last = previous;
+      last.next = null;
+
+    }
+
+    private Node getPrevious(Node node){
+        var current = first;
+        while (current != null){
+            if(current.next == node) return current;
+            current = current.next;
+        }
+
+        return null;
+    }
 
   private boolean isEmpty(){
       return first == null;

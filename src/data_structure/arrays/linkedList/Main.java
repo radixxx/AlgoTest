@@ -12,6 +12,8 @@ public class Main {
 
         list.addFirst(50);
 
+        list.indexOf(20);
+
         System.out.println(list);
 
     }
