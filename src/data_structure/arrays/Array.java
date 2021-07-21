@@ -4,8 +4,8 @@ public class Array {
     private int[] items;
     private int count;
 
-    public Array(int lenght) {
-        items = new int[lenght];
+    public Array(int length) {
+        items = new int[length];
     }
 
 
