@@ -6,6 +6,8 @@ public class Main {
 
         var list = new LinkedListImpl();
 
+        System.out.println(list.size());
+
         list.addLast(10);
         list.addLast(20);
         list.addLast(30);
@@ -13,6 +15,8 @@ public class Main {
         list.addFirst(50);
 
         list.indexOf(20);
+
+        System.out.println(list.size());
 
         System.out.println(list);
 

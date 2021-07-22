@@ -16,96 +16,108 @@ public class LinkedListImpl {
 
     private Node first;
     private Node last;
+    private int size;
 
 
-  public void addFirst(int item){
-      var node = new Node(item);
-      node.value = item;
-
-      if(first == null)
-          first = last = node;
-      else{
-          first.next = node;
-          first = node;
-      }
-  }
-
-  public void addLast(int item){
+    public void addFirst(int item) {
         var node = new Node(item);
         node.value = item;
 
-        if(first == null)
+        if (first == null)
             first = last = node;
-        else{
+        else {
+            first.next = node;
+            first = node;
+        }
+
+        size++;
+    }
+
+    public void addLast(int item) {
+        var node = new Node(item);
+        node.value = item;
+
+        if (first == null)
+            first = last = node;
+        else {
             last.next = node;
             last = node;
         }
-  }
 
-  public int indexOf(int item){
-    int index = 0;
-    var current = first;
-
-    while (current != null){
-        if(current.value == item) return index;
-        current = current.next;
-        index++;
+        size++;
     }
 
-    return -1;
-  }
+    public int indexOf(int item) {
+        int index = 0;
+        var current = first;
 
-    public boolean contains(int item){
-      return indexOf(item) != -1;
+        while (current != null) {
+            if (current.value == item) return index;
+            current = current.next;
+            index++;
+        }
+
+        return -1;
     }
 
-    public void deleteFirst(){
-      //[10 -> 20 -> 30]
-      //first => 10
-
-      if(isEmpty()) throw new NoSuchElementException();
-
-      if(first == last){
-          first = last = null;
-          return;
-      }
-
-      var second = first.next;
-      first.next = null;
-      first = second;
-
+    public boolean contains(int item) {
+        return indexOf(item) != -1;
     }
 
-    public void deleteLast(){
+    public void deleteFirst() {
+        //[10 -> 20 -> 30]
+        //first => 10
+
+        if (isEmpty()) throw new NoSuchElementException();
+
+        if (first == last) {
+            first = last = null;
+            return;
+        }
+
+        var second = first.next;
+        first.next = null;
+        first = second;
+
+        size--;
+    }
+
+    public void deleteLast() {
         //[10 -> 20 -> 30]
         //last => 30
-      if(isEmpty()) throw new NoSuchElementException();
+        if (isEmpty()) throw new NoSuchElementException();
 
-      if(first == last){
-          first = last = null;
-          return;
-      }
+        if (first == last) {
+            first = last = null;
+            return;
+        }
 
-      var previous = getPrevious(last);
-      last = previous;
-      last.next = null;
+        var previous = getPrevious(last);
+        last = previous;
+        last.next = null;
 
+
+        size--;
     }
 
-    private Node getPrevious(Node node){
+    private Node getPrevious(Node node) {
         var current = first;
-        while (current != null){
-            if(current.next == node) return current;
+        while (current != null) {
+            if (current.next == node) return current;
             current = current.next;
         }
 
         return null;
     }
 
-  private boolean isEmpty(){
-      return first == null;
-  }
 
+    protected int size() {
+        return size;
+    }
+
+    private boolean isEmpty() {
+        return first == null;
+    }
 
 
     //TODO this methods:
