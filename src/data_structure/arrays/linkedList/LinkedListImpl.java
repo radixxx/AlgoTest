@@ -21,9 +21,8 @@ public class LinkedListImpl {
 
     public void addFirst(int item) {
         var node = new Node(item);
-        node.value = item;
 
-        if (first == null)
+        if (isEmpty())
             first = last = node;
         else {
             first.next = node;
@@ -35,9 +34,8 @@ public class LinkedListImpl {
 
     public void addLast(int item) {
         var node = new Node(item);
-        node.value = item;
 
-        if (first == null)
+        if (isEmpty())
             first = last = node;
         else {
             last.next = node;
@@ -107,13 +105,46 @@ public class LinkedListImpl {
         return null;
     }
 
-
     protected int size() {
         return size;
     }
 
+    public int[] toArray() {
+        int[] array = new int[size];
+        var current = first;
+        var index = 0;
+
+        while (current != null) {
+            array[index++] = current.value;
+            current = current.next;
+        }
+
+        return array;
+    }
+
     private boolean isEmpty() {
         return first == null;
+    }
+
+
+    public void reverse() {
+        //  p     c     n
+        // [10 -> 20 -> 30]
+        // [10 <- 20 <- 30]
+
+        var previous = first;
+        var current = first.next;
+
+        while (current != null) {
+            var next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+
+        last = first;
+        last.next = null;
+        first = previous;
     }
 
 

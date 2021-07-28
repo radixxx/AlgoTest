@@ -1,24 +1,20 @@
 package data_structure.arrays.linkedList;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
+        LinkedListImpl list = new LinkedListImpl();
 
-        var list = new LinkedListImpl();
-
-        System.out.println(list.size());
-
+        list.addFirst(50);
         list.addLast(10);
         list.addLast(20);
         list.addLast(30);
 
-        list.addFirst(50);
+        list.reverse();
 
-        list.indexOf(20);
-
-        System.out.println(list.size());
-
-        System.out.println(list);
+        System.out.println(Arrays.toString(list.toArray()));
 
     }
 }
