@@ -38,8 +38,6 @@ public class QueueImpl {
 
     }
 
-
-
     @Override
     public String toString() {
         return String.valueOf(dequeue);
