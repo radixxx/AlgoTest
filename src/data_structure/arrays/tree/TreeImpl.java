@@ -42,6 +42,22 @@ public class TreeImpl {
     }
 
 
+    public boolean find(int value) {
+        var current = root;
+
+        while (current != null) {
+            if (value < current.value) {
+                current = current.leftChild;
+            } else if (value > current.value) {
+                current = current.rightChild;
+            } else
+                return true;
+        }
+        return false;
+    }
+
+
+
     //insert(value)
     //find(value):boolean
 

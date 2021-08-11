@@ -11,6 +11,9 @@ public class Main {
         tree.insert(10);
         tree.insert(12); // ! error
 
+        var searchRes = tree.find(2);
+
+        System.out.println(searchRes);
         System.out.println("done");
 
     }
