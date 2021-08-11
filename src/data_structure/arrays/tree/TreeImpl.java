@@ -56,7 +56,32 @@ public class TreeImpl {
         return false;
     }
 
+    public void traverseInOrder(){
+        traverseInOrder(root);
+    }
 
+    private void traverseInOrder(Node root){
+        if(root == null)
+            return;
+
+        System.out.println(root.value);
+        traverseInOrder(root.leftChild);
+        traverseInOrder(root.rightChild);
+    }
+
+    public void traversePostOrder(){
+        traversePostOrder(root);
+    }
+
+    private void traversePostOrder(Node root){
+        if(root == null)
+            return;
+
+        traverseInOrder(root.leftChild);
+        traverseInOrder(root.rightChild);
+        System.out.println(root.value);
+
+    }
 
     //insert(value)
     //find(value):boolean
