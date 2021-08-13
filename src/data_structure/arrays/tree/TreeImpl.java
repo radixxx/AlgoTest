@@ -27,15 +27,17 @@ public class TreeImpl {
         while (true) {
             if (value < current.value) {
                 if (current.leftChild == null) {
-                    current.leftChild = new Node(value);
+                    current.leftChild = node;
                     break;
                 }
                 current = current.leftChild;
-            } else if (current.rightChild == null) {
-                current.rightChild = new Node(value);
-                break;
+            } else {
+                if (current.rightChild == null) {
+                    current.rightChild = node;
+                    break;
+                }
+                current = current.rightChild;
             }
-            current = current.rightChild;
 
         }
 
@@ -56,12 +58,12 @@ public class TreeImpl {
         return false;
     }
 
-    public void traverseInOrder(){
+    public void traverseInOrder() {
         traverseInOrder(root);
     }
 
-    private void traverseInOrder(Node root){
-        if(root == null)
+    private void traverseInOrder(Node root) {
+        if (root == null)
             return;
 
         System.out.println(root.value);
@@ -69,12 +71,12 @@ public class TreeImpl {
         traverseInOrder(root.rightChild);
     }
 
-    public void traversePostOrder(){
+    public void traversePostOrder() {
         traversePostOrder(root);
     }
 
-    private void traversePostOrder(Node root){
-        if(root == null)
+    private void traversePostOrder(Node root) {
+        if (root == null)
             return;
 
         traverseInOrder(root.leftChild);
@@ -83,7 +85,43 @@ public class TreeImpl {
 
     }
 
-    //insert(value)
-    //find(value):boolean
+    public void height() {
+        height(root);
+    }
+
+    private int height(Node root) {
+        if (root == null) {
+            return -1;
+        }
+
+        if (root.leftChild == null && root.rightChild == null) {
+            return 0;
+        }
+
+        return 1 + Math.max(
+                height(root.leftChild),
+                height(root.rightChild));
+    }
+
+    public int min() {
+        return min(root);
+    }
+
+    private int min(Node root) {
+
+        if (root.leftChild == null && root.rightChild == null) {
+            return root.value;
+        }
+
+        var left = min(root.leftChild);
+        var right = min(root.rightChild);
+
+        return Math.min(Math.min(left, right), root.value);
+
+    }
+
+    //TODO:
+    //height()
+    //min()
 
 }
