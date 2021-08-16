@@ -6,8 +6,8 @@ public class Main {
         AVLTree avlTree = new AVLTree();
 
         avlTree.insert(10);
-        avlTree.insert(20);
         avlTree.insert(30);
+        avlTree.insert(20);
 
     }
 
