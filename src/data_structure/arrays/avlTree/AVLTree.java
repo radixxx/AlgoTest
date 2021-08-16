@@ -35,10 +35,33 @@ public class AVLTree {
                 height(root.leftChild),
                 height(root.rightChild)) + 1;
 
+        balance(root);
+
         return root;
     }
 
-    private int height(AVLNode node){
+
+    private void balance(AVLNode root) {
+        var balanceFactor = balanceFactor(root);
+
+        if (balanceFactor > 1) {
+            if (balanceFactor(root.leftChild) < 0) {
+                System.out.println("Left rotate: " + root.leftChild.value);
+            }
+            System.out.println("Right rotate: " + root.value);
+        } else if (balanceFactor < -1) {
+            if (balanceFactor(root.rightChild) > 0) {
+                System.out.println("Right rotate: " + root.rightChild.value);
+            }
+            System.out.println("Left rotate: " + root.value);
+        }
+    }
+
+    private int balanceFactor(AVLNode node) {
+        return (node == null) ? 0 : height(node.leftChild) - height(node.rightChild);
+    }
+
+    private int height(AVLNode node) {
         return (node == null) ? -1 : node.height;
     }
 
