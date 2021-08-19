@@ -1,4 +1,4 @@
-package data_structure.arrays.stack;
+package data_structure.stack;
 
 public class Main {
 
