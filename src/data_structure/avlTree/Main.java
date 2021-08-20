@@ -1,4 +1,4 @@
-package data_structure.arrays.avlTree;
+package data_structure.avlTree;
 
 public class Main {
     public static void main(String[] args) {
