@@ -15,13 +15,6 @@ public class HeapImpl {
         bubbleUp();
     }
 
-    public void bubbleUp() {
-        var index = size - 1;
-        while (index > 0 && items[index] > items[parent(index)]) {
-            swap(index, parent(index));
-            index = parent(index);
-        }
-    }
 
     private int parent(int index) {
         return (index - 1) / 2;
@@ -34,19 +27,31 @@ public class HeapImpl {
         items[second] = temp;
     }
 
-    public void remove() {
-        if (size == 0) throw new IllegalStateException();
+    private void bubbleUp() {
+        var index = size - 1;
+        while (index > 0 && items[index] > items[parent(index)]) {
+            swap(index, parent(index));
+            index = parent(index);
+        }
+    }
 
-        items[0] = items[--size];
-
+    private void bubleDown() {
         var index = 0;
         while (index <= size && !isValidParent(index)) {
 
             var largerChildIndex = largerChildIndex(index);
-
             swap(index, largerChildIndex);
             index = largerChildIndex;
         }
+    }
+
+    public int remove() {
+        if (size == 0) throw new IllegalStateException();
+
+        var root = items[0];
+        items[0] = items[--size];
+        bubleDown();
+        return root;
     }
 
 
