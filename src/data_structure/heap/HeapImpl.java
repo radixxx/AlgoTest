@@ -116,6 +116,27 @@ public class HeapImpl {
     }
 
 
+    public int max(){
+        if(items == null)  throw new IllegalStateException();
+
+        return items[0];
+    }
+
+    public int getKthLargest(int [] array, int k){
+        if(k < 1 || k > array.length) throw new IllegalStateException();
+
+        var heap = new HeapImpl();
+        for(var number : array){
+            heap.insert(number);
+        }
+
+        for(var i = 0; i < k - 1; i++){
+            heap.remove();
+        }
+
+        return heap.max();
+    }
+
     public void swap(int[] array, int first, int second) {
         var temp = array[first];
         array[first] = array[second];
