@@ -51,4 +51,15 @@ public class Tries {
         current.isEndOfWord = true;
     }
 
+    public boolean contains(String word){
+        var current = root;
+        for (var ch : word.toCharArray()) {
+            if(!current.hasChild(ch)) return false;
+
+            current = current.getChild(ch);
+        }
+
+        return current.isEndOfWord;
+    }
+
 }
