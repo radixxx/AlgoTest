@@ -22,18 +22,21 @@ public class Tries {
                     '}';
         }
 
-        public boolean hasChild(char ch){
+        public boolean hasChild(char ch) {
             return children.containsKey(ch);
         }
 
-        public void addChild(char ch){
+        public void addChild(char ch) {
             children.put(ch, new Node(ch));
         }
 
-        public Node getChild(char ch){
+        public Node getChild(char ch) {
             return children.get(ch);
         }
 
+        public Node[] getChildren(){
+            return children.values().toArray(new Node[0]);
+        }
     }
 
 
@@ -51,15 +54,24 @@ public class Tries {
         current.isEndOfWord = true;
     }
 
-    public boolean contains(String word){
+    public boolean contains(String word) {
         var current = root;
         for (var ch : word.toCharArray()) {
-            if(!current.hasChild(ch)) return false;
-
+            if (!current.hasChild(ch)) return false;
             current = current.getChild(ch);
         }
-
         return current.isEndOfWord;
+    }
+
+    public void traverse(){
+        traverse(root);
+    }
+
+    private void traverse(Node root){
+        System.out.println(root.value);
+        for (var child : root.getChildren()) {
+            traverse(child);
+        }
     }
 
 }
