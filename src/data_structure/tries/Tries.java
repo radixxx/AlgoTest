@@ -1,6 +1,8 @@
 package data_structure.tries;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Tries {
 
@@ -105,4 +107,38 @@ public class Tries {
         }
     }
 
+
+    public List<String> findWords(String prefix){
+        List<String> words = new ArrayList<>();
+        var lastNode = findLastNodeOf(prefix);
+        findWords(lastNode, prefix, words);
+
+        return words;
+    }
+
+    public void findWords(Node root, String prefix, List<String> words ){
+        if(root == null) return;
+
+        if(root.isEndOfWord){
+            words.add(prefix);
+        }
+
+        for(var child : root.getChildren()){
+            findWords(child, prefix + child.value, words);
+        }
+    }
+
+    private Node findLastNodeOf(String prefix){
+        if(prefix == null) return null;
+
+        var current = root;
+        for(var ch : prefix.toCharArray()){
+            var child = current.getChild(ch);
+            if(child == null){
+                return null;
+            }
+            current = child;
+        }
+        return current;
+    }
 }
