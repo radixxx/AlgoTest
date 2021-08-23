@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 public class Tries {
 
-    public static int ALPHABETIC_SIZE = 26;
 
     private class Node {
         private char value;
@@ -18,8 +17,7 @@ public class Tries {
 
         @Override
         public String toString() {
-            return "value=" + value +
-                    '}';
+            return "value= " + value;
         }
 
         public boolean hasChild(char ch) {
@@ -36,6 +34,14 @@ public class Tries {
 
         public Node[] getChildren(){
             return children.values().toArray(new Node[0]);
+        }
+
+        public boolean hasChidren(){
+            return !children.isEmpty();
+        }
+
+        public void removeChild(char ch){
+            children.remove(ch);
         }
     }
 
@@ -71,6 +77,31 @@ public class Tries {
         System.out.println(root.value);
         for (var child : root.getChildren()) {
             traverse(child);
+        }
+    }
+
+
+    public void remove(String word){
+        if(word == null) return;
+        remove(root, word, 0);
+    }
+
+    private void remove(Node root, String word, int index){
+        if(index == word.length()){
+            System.out.println(root.value);
+            root.isEndOfWord = false;
+            return;
+        }
+
+        var ch = word.charAt(index);
+        var child = root.getChild(ch);
+        if(child == null) return;
+
+        remove(child, word, index + 1);
+        System.out.println(root.value);
+
+        if(!child.hasChidren() && !child.isEndOfWord){
+            root.removeChild(ch);
         }
     }
 
