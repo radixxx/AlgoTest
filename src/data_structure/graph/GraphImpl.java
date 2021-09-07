@@ -71,10 +71,11 @@ public class GraphImpl {
     public void traverseDepthFirst(String root) {
         var node = nodes.get(root);
         if (node == null) return;
-        
+
         traverseDepthFirst(nodes.get(root), new HashSet<>());
     }
 
+    // 'обход в глубину'
     private void traverseDepthFirst(Node root, Set<Node> visited) {
         System.out.println(root);
         visited.add(root);
@@ -83,7 +84,29 @@ public class GraphImpl {
             if (!visited.contains(node)) ;
             traverseDepthFirst(node, visited);
         }
+    }
 
+    // 'обход в ширину'
+    public void traverseBreadthFirst(String root) {
+        var node = nodes.get(root);
+        if (node == null) return;
+
+        Set<Node> visited = new HashSet<>();
+        Queue<Node> queue = new ArrayDeque<>();
+        queue.add(node);
+
+        while (!queue.isEmpty()) {
+            var current = queue.remove();
+            if (visited.contains(current)) continue;
+
+            System.out.println(current);
+
+            visited.add(current);
+            for (var neighbour : adjacencyList.get(current)) {
+                if (!visited.contains(neighbour))
+                    queue.add(neighbour);
+            }
+        }
     }
 
 }

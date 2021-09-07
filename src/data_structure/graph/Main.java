@@ -16,9 +16,12 @@ public class Main {
         graph.addEdge("B", "D");
 
         //graph.addEdge("D", "C");
-
         graph.print();
         graph.traverseDepthFirst("A");
+
+        System.out.println("-------");
+
+        graph.traverseBreadthFirst("C");
 
     }
 
