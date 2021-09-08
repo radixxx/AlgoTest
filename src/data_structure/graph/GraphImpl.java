@@ -109,4 +109,39 @@ public class GraphImpl {
         }
     }
 
+
+    public boolean isCycle() {
+        Set<Node> all = new HashSet<>();
+        all.addAll(nodes.values());
+        Set<Node> visiting = new HashSet<>();
+        Set<Node> visited = new HashSet<>();
+
+        while (!all.isEmpty()) {
+            var current = all.iterator().next(); //toArray(new Node[0])[0]
+            if (isCycle(current, all, visiting, visited)) return true;
+        }
+
+        return false;
+    }
+
+
+    private boolean isCycle(Node node, Set<Node> all, Set<Node> visiting, Set<Node> visited) {
+        all.remove(node);
+        visiting.add(node);
+
+        for (var neighbour : adjacencyList.get(node)) {
+            if (visited.contains(neighbour)) continue;
+
+            if (visiting.contains(neighbour)) return true;
+
+            if (isCycle(neighbour, all, visiting, visited)) return true;
+        }
+
+        visiting.remove(node);
+        visited.add(node);
+
+        return false;
+
+    }
+
 }

@@ -12,17 +12,17 @@ public class Main {
         graph.addNode("D");
 
         graph.addEdge("A", "B");
+        graph.addEdge("B", "C");
         graph.addEdge("A", "C");
-        graph.addEdge("B", "D");
 
-        //graph.addEdge("D", "C");
         graph.print();
         graph.traverseDepthFirst("A");
 
         System.out.println("-------");
-
         graph.traverseBreadthFirst("C");
+        var res = graph.isCycle();
 
+        System.out.println(res);
     }
 
 }
