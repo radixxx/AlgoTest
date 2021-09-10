@@ -10,7 +10,11 @@ public class Main {
         graph.addNode("B");
         graph.addNode("C");
         graph.addEdge("A", "B", 3);
+        graph.addEdge("B", "C", 5);
+        graph.addEdge("A", "C", 13);
 
+
+       var result = graph.getShortestDistance("C", "B");
 
         graph.print();
 

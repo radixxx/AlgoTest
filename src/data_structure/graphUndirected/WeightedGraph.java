@@ -5,8 +5,8 @@ import java.util.*;
 public class WeightedGraph {
 
     class Node {
-        private String label;
-        private List<Edge> edges = new ArrayList<>();
+        protected String label;
+        protected List<Edge> edges = new ArrayList<>();
 
         public Node(String label) {
             this.label = label;
@@ -81,14 +81,19 @@ public class WeightedGraph {
         }
     }
 
-    public int getShortestDistance(String from, String to) {
+    public Path getShortestDistance(String from, String to) {
         var fromNode = nodes.get(from);
-        Map<Node, Integer> distances = new HashMap<>();
+        var toNode = nodes.get(to);
 
+        if(fromNode == null || toNode == null) throw new IllegalStateException();
+
+        Map<Node, Integer> distances = new HashMap<>();
         for (var node : nodes.values()) {
             distances.put(node, Integer.MAX_VALUE);
         }
         distances.replace(fromNode, 0);
+
+        Map<Node, Node> previousNodes = new HashMap<>();
 
         Set<Node> visited = new HashSet<>();
 
@@ -107,11 +112,31 @@ public class WeightedGraph {
                 var newDistance = distances.get(current) + edge.weight;
                 if (newDistance < distances.get(edge.to)) {
                     distances.replace(edge.to, newDistance);
+                    previousNodes.put(edge.to, current);
                     queue.add(new NodeEntry(edge.to, newDistance));
                 }
             }
         }
-        return distances.get(nodes.get(to));
+
+        return buildPath(previousNodes, toNode);
+    }
+
+
+    protected Path buildPath(Map<Node, Node> previousNodes, Node toNode) {
+        Stack<Node> stack = new Stack<>();
+        stack.push(nodes.get(toNode));
+        var previous = previousNodes.get(toNode);
+
+        while (previous != null) {
+            stack.push(previous);
+            previous = previousNodes.get(previous);
+        }
+
+        var path = new Path();
+        while (!stack.isEmpty())
+            path.add(stack.pop().label);
+
+        return path;
     }
 
 }
