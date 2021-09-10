@@ -139,4 +139,24 @@ public class WeightedGraph {
         return path;
     }
 
+
+    public WeightedGraph getMinimumSpanningTree(){
+        var minimumSpaningTree = new WeightedGraph();
+
+        PriorityQueue<Edge> edges = new PriorityQueue<>(
+                Comparator.comparingInt(e -> e.weight)
+        );
+
+       var startNode =  nodes.values().iterator().next();
+       edges.addAll(startNode.getEdges());
+        minimumSpaningTree.addNode(startNode.label);
+
+        while (minimumSpaningTree.nodes.size() < nodes.size()){
+           var minEdge = edges.remove();
+
+           if(minimumSpaningTree.nodes.containsKey(minEdge.to.label)) continue;
+        }
+
+    }
+
 }
