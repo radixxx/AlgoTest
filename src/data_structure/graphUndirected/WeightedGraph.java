@@ -141,7 +141,7 @@ public class WeightedGraph {
 
 
     public WeightedGraph getMinimumSpanningTree(){
-        var minimumSpaningTree = new WeightedGraph();
+        var minimumSpanningTree = new WeightedGraph();
 
         PriorityQueue<Edge> edges = new PriorityQueue<>(
                 Comparator.comparingInt(e -> e.weight)
@@ -149,14 +149,32 @@ public class WeightedGraph {
 
        var startNode =  nodes.values().iterator().next();
        edges.addAll(startNode.getEdges());
-        minimumSpaningTree.addNode(startNode.label);
+        minimumSpanningTree.addNode(startNode.label);
 
-        while (minimumSpaningTree.nodes.size() < nodes.size()){
+        while (minimumSpanningTree.nodes.size() < nodes.size()){
            var minEdge = edges.remove();
+            var nextNode = minEdge.to;
 
-           if(minimumSpaningTree.nodes.containsKey(minEdge.to.label)) continue;
+
+           if(minimumSpanningTree.nodes.containsKey(minEdge.to.label)) continue;
+
+
+           minimumSpanningTree.addNode(minEdge.to.label);
+           minimumSpanningTree.addEdge(minEdge.from.label, nextNode.label, minEdge.weight);
+
+
+           for(var edge : nextNode.getEdges()){
+               if(!minimumSpanningTree.containsNode(edge.to.label))
+                   edges.add(edge);
+           }
         }
 
+        return minimumSpanningTree;
     }
+
+    public boolean containsNode(String label){
+        return nodes.containsKey(label);
+    }
+
 
 }
