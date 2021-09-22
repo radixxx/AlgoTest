@@ -2,6 +2,7 @@ package algorithms;
 
 import algorithms.sortings.Bubble;
 import algorithms.sortings.Insertion;
+import algorithms.sortings.Merge;
 import algorithms.sortings.Selection;
 import data_structure.arrays.Array;
 
@@ -21,6 +22,10 @@ public class Main {
 
         var insertion = new Insertion();
         insertion.sort(numbers);
+        System.out.println(Arrays.toString(numbers));
+
+        var merge = new Merge();
+        merge.sort(numbers);
         System.out.println(Arrays.toString(numbers));
 
     }
