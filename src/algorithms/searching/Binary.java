@@ -21,9 +21,25 @@ public class Binary {
         if (target < array[middle])
             return binarySearch(array, target, left, middle - 1);
 
-
         return binarySearch(array, target, middle + 1, right);
+    }
 
+    public int binarySearch(int[] array, int target) {
+        var left = 0;
+        var right = array.length - 1;
+
+        while (left <= right) {
+            var middle = (right + left) / 2;
+
+            if (array[middle] == target) return middle;
+
+            if (target < array[middle])
+                right = middle - 1;
+            else
+                left = middle + 1;
+        }
+
+        return -1;
     }
 
 }
