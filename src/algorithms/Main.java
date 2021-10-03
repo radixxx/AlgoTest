@@ -28,6 +28,10 @@ public class Main {
         quick.sort(numbers);
         System.out.println("Quick: " + Arrays.toString(numbers));
 
+        var jump = new Jump();
+        var result = jump.jumpSearch(numbers, 5);
+        System.out.println(result);
+
     }
 
 }
