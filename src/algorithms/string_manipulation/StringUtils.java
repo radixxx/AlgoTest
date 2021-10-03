@@ -40,6 +40,22 @@ public class StringUtils {
         for(var i = words.length - 1; i >= 0; i--){
             reversed.append(words[i] + " ");
         return reversed.toString().trim();*/
-
     }
+
+    public static boolean areRotation(String str1, String str2){
+
+        if(str1 == null || str2 == null) return false;
+
+        return (str1.length() == str2.length() && (str1 + str2).contains(str2));
+/*
+        if(str1.length() != str2.length()){
+            return false;
+        }
+
+        if((str1 + str2).contains(str2))
+            return false;
+
+    return true;*/
+    }
+
 }

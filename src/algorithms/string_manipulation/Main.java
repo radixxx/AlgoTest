@@ -13,6 +13,10 @@ public class Main {
 
         String reverseWord = StringUtils.reverseWords("Aelb Aelb");
         System.out.println(reverseWord);
+
+
+        var x = StringUtils.areRotation("ABCD", "DCBA");
+        System.out.println(x);
     }
 
 }
