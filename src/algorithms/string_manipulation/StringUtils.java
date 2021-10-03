@@ -2,6 +2,8 @@ package algorithms.string_manipulation;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 public class StringUtils {
     public static int countVowels(String str) {
@@ -47,15 +49,24 @@ public class StringUtils {
         if(str1 == null || str2 == null) return false;
 
         return (str1.length() == str2.length() && (str1 + str2).contains(str2));
-/*
-        if(str1.length() != str2.length()){
-            return false;
+    }
+
+    public static String removeDuplicates(String str){
+        if(str == null) return "";
+
+        StringBuilder output = new StringBuilder();
+        Set<Character> seen = new HashSet<>();
+
+
+        for(var ch : str.toCharArray()){
+            if(!seen.contains(ch)){
+                seen.add(ch);
+                output.append(ch);
+            }
         }
 
-        if((str1 + str2).contains(str2))
-            return false;
-
-    return true;*/
+        return output.toString();
     }
+
 
 }

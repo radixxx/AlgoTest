@@ -15,8 +15,12 @@ public class Main {
         System.out.println(reverseWord);
 
 
-        var x = StringUtils.areRotation("ABCD", "DCBA");
-        System.out.println(x);
+        var rotation = StringUtils.areRotation("ABCD", "DCBA");
+        System.out.println(rotation);
+
+
+        var duplicates = StringUtils.removeDuplicates("scrooge");
+        System.out.println(duplicates);
     }
 
 }
