@@ -68,5 +68,24 @@ public class StringUtils {
         return output.toString();
     }
 
+    public static char getMaxOccuringChar(String str){
+
+        if(str.isEmpty()) throw new IllegalArgumentException();
+
+        final int ASCII_SIZE = 256;
+        int[] freuquence = new int[ASCII_SIZE];
+        for(var ch : str.toCharArray()) freuquence[ch]++;
+
+        int max = 0;
+        char result = ' ';
+        for(var i = 0; i < freuquence.length; i++){
+            if(freuquence[i] > max){
+                max = freuquence[i];
+                result = (char) i;
+            }
+        }
+
+        return result;
+    }
 
 }

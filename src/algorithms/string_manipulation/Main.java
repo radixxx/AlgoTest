@@ -21,6 +21,10 @@ public class Main {
 
         var duplicates = StringUtils.removeDuplicates("scrooge");
         System.out.println(duplicates);
+
+
+        var frequence = StringUtils.getMaxOccuringChar("smoooth");
+        System.out.println(frequence);
     }
 
 }
