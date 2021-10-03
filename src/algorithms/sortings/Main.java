@@ -1,6 +1,4 @@
-package algorithms;
-
-import algorithms.sortings.*;
+package algorithms.sortings;
 
 import java.util.Arrays;
 
