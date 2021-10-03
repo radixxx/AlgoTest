@@ -6,6 +6,10 @@ public class Main {
        int count = StringUtils.countVowels("Hill");
         System.out.println(count);
 
+
+        String reversed = StringUtils.reverse("Aelb Aelb");
+        System.out.println(reversed);
+
     }
 
 }
