@@ -7,9 +7,12 @@ public class Main {
         System.out.println(count);
 
 
-        String reversed = StringUtils.reverse("Aelb Aelb");
+        String reversed = StringUtils.reverse("Aelb");
         System.out.println(reversed);
 
+
+        String reverseWord = StringUtils.reverseWords("Aelb Aelb");
+        System.out.println(reverseWord);
     }
 
 }
