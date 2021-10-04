@@ -44,22 +44,22 @@ public class StringUtils {
         return reversed.toString().trim();*/
     }
 
-    public static boolean areRotation(String str1, String str2){
+    public static boolean areRotation(String str1, String str2) {
 
-        if(str1 == null || str2 == null) return false;
+        if (str1 == null || str2 == null) return false;
 
         return (str1.length() == str2.length() && (str1 + str2).contains(str2));
     }
 
-    public static String removeDuplicates(String str){
-        if(str == null) return "";
+    public static String removeDuplicates(String str) {
+        if (str == null) return "";
 
         StringBuilder output = new StringBuilder();
         Set<Character> seen = new HashSet<>();
 
 
-        for(var ch : str.toCharArray()){
-            if(!seen.contains(ch)){
+        for (var ch : str.toCharArray()) {
+            if (!seen.contains(ch)) {
                 seen.add(ch);
                 output.append(ch);
             }
@@ -68,24 +68,39 @@ public class StringUtils {
         return output.toString();
     }
 
-    public static char getMaxOccuringChar(String str){
+    public static char getMaxOccuringChar(String str) {
 
-        if(str.isEmpty()) throw new IllegalArgumentException();
+        if (str.isEmpty()) throw new IllegalArgumentException();
 
         final int ASCII_SIZE = 256;
         int[] freuquence = new int[ASCII_SIZE];
-        for(var ch : str.toCharArray()) freuquence[ch]++;
+        for (var ch : str.toCharArray()) freuquence[ch]++;
 
         int max = 0;
         char result = ' ';
-        for(var i = 0; i < freuquence.length; i++){
-            if(freuquence[i] > max){
+        for (var i = 0; i < freuquence.length; i++) {
+            if (freuquence[i] > max) {
                 max = freuquence[i];
                 result = (char) i;
             }
         }
 
         return result;
+    }
+
+    public static String capitalize(String sentence) {
+        if (sentence == null || sentence.isEmpty()) return "";
+
+        String[] words = sentence
+                .trim()
+                .replaceAll(" +", " ")
+                .split(" ");
+        for (var i = 0; i < words.length; i++) {
+            words[i] = words[i].substring(0, 1).toUpperCase()
+                    + words[i].substring(1).toLowerCase();
+        }
+
+        return String.join(" ", words);
     }
 
 }

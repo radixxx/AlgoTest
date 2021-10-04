@@ -25,6 +25,11 @@ public class Main {
 
         var frequence = StringUtils.getMaxOccuringChar("smoooth");
         System.out.println(frequence);
+
+
+        var capilise = StringUtils.capitalize("learn programming and all will be better!");
+        System.out.println(capilise);
+
     }
 
 }
