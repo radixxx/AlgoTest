@@ -103,6 +103,8 @@ public class StringUtils {
         return String.join(" ", words);
     }
 
+
+    // O (n log n)
     public static boolean anagrams(String first, String second) {
         if (first == null || second == null ||
                 first.length() != second.length()) return false;
@@ -121,6 +123,7 @@ public class StringUtils {
     }
 
 
+    // O (n)
     public static boolean simpleAnagrams(String first, String second) {
         if (first == null || second == null) return false;
 
@@ -139,6 +142,19 @@ public class StringUtils {
 
             frequencies[index]--;
         }
+
+        return true;
+    }
+
+
+    public static boolean palindrome(String word) {
+        if (word == null) return false;
+
+        int left = 0;
+        int right = word.length() - 1;
+
+        while (left < right)
+            if (word.charAt(left++) != word.charAt(right--)) return false;
 
         return true;
     }

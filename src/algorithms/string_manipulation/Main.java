@@ -37,6 +37,9 @@ public class Main {
         var anagramsS = StringUtils.anagrams("RACE", "CARE");
         System.out.println(anagramsS);
 
+        var palindrome = StringUtils.palindrome("peep");
+        System.out.println(palindrome);
+
     }
 
 }
