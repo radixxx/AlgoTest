@@ -120,4 +120,26 @@ public class StringUtils {
         return Arrays.equals(array1, array2);
     }
 
+
+    public static boolean simpleAnagrams(String first, String second) {
+        if (first == null || second == null) return false;
+
+        final int ALPHABET = 26;
+        int[] frequencies = new int[ALPHABET];
+
+        first = first.toLowerCase();
+        for (var i = 0; i < first.length(); i++) {
+            frequencies[first.charAt(i) - 'a']++; //97
+        }
+
+        second = second.toLowerCase();
+        for (var i = 0; i < second.length(); i++) {
+            var index = second.charAt(i) - 'a';
+            if (frequencies[index] == 0) return false;
+
+            frequencies[index]--;
+        }
+
+        return true;
+    }
 }

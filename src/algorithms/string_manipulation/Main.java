@@ -33,6 +33,10 @@ public class Main {
         var anagrams = StringUtils.anagrams("RACE", "CARE");
         System.out.println(anagrams);
 
+
+        var anagramsS = StringUtils.anagrams("RACE", "CARE");
+        System.out.println(anagramsS);
+
     }
 
 }
