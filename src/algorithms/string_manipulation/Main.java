@@ -3,7 +3,7 @@ package algorithms.string_manipulation;
 public class Main {
     public static void main(String[] args) {
 
-       int count = StringUtils.countVowels("Hill");
+        int count = StringUtils.countVowels("Hill");
         System.out.println(count);
 
 
@@ -29,6 +29,9 @@ public class Main {
 
         var capilise = StringUtils.capitalize("learn programming and all will be better!");
         System.out.println(capilise);
+
+        var anagrams = StringUtils.anagrams("RACE", "CARE");
+        System.out.println(anagrams);
 
     }
 
