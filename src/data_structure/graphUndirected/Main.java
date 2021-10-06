@@ -14,8 +14,9 @@ public class Main {
         var ress = graph.getMinimumSpanningTree();
         ress.print();
 
-        //var result = graph.getShortestDistance("C", "B");
+        var result = graph.getShortestDistance("C", "B");
         graph.print();
+        System.out.println(result);
 
     }
 

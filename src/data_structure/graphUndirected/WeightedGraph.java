@@ -1,5 +1,7 @@
 package data_structure.graphUndirected;
 
+import data_structure.Path;
+
 import java.util.*;
 
 public class WeightedGraph {
@@ -122,11 +124,13 @@ public class WeightedGraph {
     }
 
 
-    protected Path buildPath(Map<Node, Node> previousNodes, Node toNode) {
-        Stack<Node> stack = new Stack<>();
-        stack.push(nodes.get(toNode));
-        var previous = previousNodes.get(toNode);
+    protected Path buildPath(
+            Map<Node,
+            Node> previousNodes, Node toNode) {
 
+        Stack<Node> stack = new Stack<>();
+        stack.push(toNode);
+        var previous = previousNodes.get(toNode);
         while (previous != null) {
             stack.push(previous);
             previous = previousNodes.get(previous);
